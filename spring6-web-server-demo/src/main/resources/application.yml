@@ -1,0 +1,69 @@
+server:
+  port: 9050
+  max-http-request-header-size: 756000
+  jetty:
+    threads:
+      min: 100
+      max: 3000
+      idle-timeout: 10000
+    connection-idle-timeout: 10000
+    accesslog:
+      enabled: true
+
+spring:
+  application:
+    name: spring6-web-demo
+  datasource:
+    driver-class-name: org.h2.Driver
+    #    url: jdbc:mysql://localhost:3306/test2
+    url: jdbc:h2:file:~/spring6webdemo
+    username: sa
+    password: sa
+    hikari:
+      max-lifetime: 10000
+      idle-timeout: 10000
+      maximum-pool-size: 30
+      minimum-idle: 10
+      connection-timeout: 10000
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    database: h2
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+
+service:
+  api:
+    base-path: /services/${spring.application.name}
+  swagger:
+    version: 'version1.0.0-1401/12/13'
+    title: 'spring 6 web demo'
+    description: 'spring 6 web demo'
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    display-request-duration: true
+    display-operation-id: true
+
+
+  api-docs:
+    path: /v3/api-docs
+    groups:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuators/${spring.application.name}
