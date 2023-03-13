@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    //HttpSessionContext httpSessionContext;
-
     @Bean
     public OpenAPI openAPI(
             @Value(value = "${service.swagger.title}") String swaggerTitle,
@@ -20,5 +18,4 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info().title(swaggerTitle).version(swaggerVersion).description(swaggerDescription));
     }
-
 }

@@ -30,7 +30,7 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
+      ddl-auto: create-drop
     database: h2
     properties:
       hibernate:
@@ -44,7 +44,7 @@ service:
   api:
     base-path: /services/${spring.application.name}
   swagger:
-    version: 'version1.0.0-1401/12/13'
+    version: 'version1.0.0-1401/12/22'
     title: 'spring 6 web demo'
     description: 'spring 6 web demo'
 
