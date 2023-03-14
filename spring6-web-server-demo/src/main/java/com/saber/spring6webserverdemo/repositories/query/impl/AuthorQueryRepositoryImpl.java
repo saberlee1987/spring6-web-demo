@@ -1,12 +1,9 @@
-package com.saber.spring6webserverdemo.repositories.impl;
+package com.saber.spring6webserverdemo.repositories.query.impl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.querydsl.sql.SQLQueryFactory;
-import com.saber.spring6webserverdemo.model.command.AuthorCommand;
 import com.saber.spring6webserverdemo.model.query.Author;
 import com.saber.spring6webserverdemo.model.query.QAuthor;
-import com.saber.spring6webserverdemo.repositories.AuthorCommandRepository;
-import com.saber.spring6webserverdemo.repositories.AuthorQueryRepository;
+import com.saber.spring6webserverdemo.repositories.query.AuthorQueryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +13,6 @@ import java.util.Optional;
 import static com.saber.spring6webserverdemo.model.query.QAuthor.author;
 
 @Repository
-//@Transactional
 public class AuthorQueryRepositoryImpl implements AuthorQueryRepository {
 
     @Autowired

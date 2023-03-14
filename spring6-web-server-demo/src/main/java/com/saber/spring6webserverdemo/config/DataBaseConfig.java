@@ -39,7 +39,7 @@ public class DataBaseConfig {
     }
 
     @Bean
-    public PlatformTransactionManager platformTransactionManager(EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;

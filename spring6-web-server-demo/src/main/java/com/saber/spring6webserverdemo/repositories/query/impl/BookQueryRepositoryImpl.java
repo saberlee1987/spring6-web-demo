@@ -1,30 +1,21 @@
-package com.saber.spring6webserverdemo.repositories.impl;
+package com.saber.spring6webserverdemo.repositories.query.impl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.saber.spring6webserverdemo.model.query.Book;
 import com.saber.spring6webserverdemo.model.query.QBook;
-import com.saber.spring6webserverdemo.repositories.BookRepository;
+import com.saber.spring6webserverdemo.repositories.query.BookQueryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 import static com.saber.spring6webserverdemo.model.query.QBook.book;
 @Repository
 @Transactional
-public class BookRepositoryImpl implements BookRepository {
+public class BookQueryRepositoryImpl implements BookQueryRepository {
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
-
-    @Override
-    public Book save(Book entity) {
-        Long id = jpaQueryFactory.insert(book)
-                .columns(book.title,book.isbn,book.authors)
-                .values(entity)
-                .execute();
-        entity.setId(id);
-        return entity;
-    }
 
     @Override
     public Optional<Book> findById(Long id) {
@@ -34,5 +25,10 @@ public class BookRepositoryImpl implements BookRepository {
             return Optional.of(book);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<Book> findAll() {
+        return jpaQueryFactory.selectFrom(book).fetch();
     }
 }

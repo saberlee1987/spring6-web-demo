@@ -1,4 +1,4 @@
-package com.saber.spring6webserverdemo.repositories;
+package com.saber.spring6webserverdemo.repositories.query;
 
 import com.saber.spring6webserverdemo.model.command.AuthorCommand;
 import com.saber.spring6webserverdemo.model.query.Author;

@@ -2,7 +2,9 @@ package com.saber.spring6webserverdemo;
 
 import com.saber.spring6webserverdemo.model.command.AuthorCommand;
 import com.saber.spring6webserverdemo.model.query.Author;
+import com.saber.spring6webserverdemo.model.query.Book;
 import com.saber.spring6webserverdemo.services.AuthorService;
+import com.saber.spring6webserverdemo.services.BookService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -13,36 +15,27 @@ import java.util.List;
 public class Spring6WebServerDemoApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Spring6WebServerDemoApplication.class, args);
-       // BookService bookService = context.getBean(BookService.class);
+        BookService bookService = context.getBean(BookService.class);
         AuthorService authorService = context.getBean(AuthorService.class);
 
-//        Book book = new Book();
-//        book.setIsbn("1234124");
-//        book.setTitle("java");
-//
-        AuthorCommand author1 = new AuthorCommand();
+        Book book = new Book();
+        book.setIsbn("1234124");
+        book.setTitle("java");
+
+        Author author1 = new Author();
         author1.setFirstName("saber");
         author1.setLastName("Azizi");
+        author1.getBooks().add(book);
+        book.getAuthors().add(author1);
 
-//        AuthorCommand author2 = new AuthorCommand();
-//        author2.setFirstName("bruce3");
-//        author2.setLastName("Lee3");
-//        //author.setId(1L);
-        System.out.println(authorService.save(author1));
-      //  System.out.println(authorService.save(author2));
+        authorService.save(author1);
+        bookService.save(book);
 
-
-        // book.getAuthors().add(author);
-       //author.getBooks().add(book);
-     //   bookService.save(book);
-
-//        Optional<Author> authorOptional = authorService.findById(2L);
-//        if (authorOptional.isPresent()){
-//            Author a = authorOptional.get();
-//            System.out.println(a);
-//        }
 
         List<Author> authors = authorService.findAll();
         System.out.println(authors);
+        System.out.println("=======================================================================================================");
+        List<Book> books = bookService.findAll();
+        System.out.println(books);
     }
 }

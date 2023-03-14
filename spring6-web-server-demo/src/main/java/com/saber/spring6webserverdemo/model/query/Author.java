@@ -5,13 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "author")
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"books"})
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +22,15 @@ public class Author {
     private String firstName;
     @Column(name = "lastName",length = 90)
     private String lastName;
-//    @ManyToMany(mappedBy = "authors")
-//    private Set<Book> books;
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books;
 
-//    public Set<Book> getBooks() {
-//        if (books == null){
-//            books = new HashSet<>();
-//        }
-//        return books;
-//    }
+    public Set<Book> getBooks() {
+        if (books == null){
+            books = new HashSet<>();
+        }
+        return books;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -13,8 +13,8 @@ import java.util.Objects;
 public class AuthorCommand {
 
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String FIRSTNAME;
+    private String LASTNAME;
 //    @ManyToMany(mappedBy = "authors")
 //    private Set<Book> books;
 
